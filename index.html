@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+    
+<head>
+
+    <meta charset="UTF-8">
+    <title>zakichna</title>
+  
+    <meta name="robots" content="noindex">
+  
+    
+    
+    
+    
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  
+    <style class="INLINE_PEN_STYLESHEET_ID">
+      body {
+    margin: 20px auto;
+    font-family: 'Lato';
+    font-weight: 300;
+  }
+  
+  a {
+    display: block;
+    margin: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+    </style>
+  
+    
+ 
+  </head>
+  
+  <body>
+   
+  
+
+    <input type="file" name="file" id="data"  > 
+     
+  <a class="dynamic" href="#" download="file.txt">extract emails</a>
+    
+
+
+
+
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+   
+  <script>
+ //upload file
+document.getElementById('data').onchange = function(){
+
+var file = this.files[0];
+
+var reader = new FileReader();
+reader.onload = function(progressEvent){
+  // Entire file
+//   console.log(this.result);
+
+  // By lines
+var lines = this.result.split('\n');
+ 
+var name="emails" ;
+var emails="";  
+var mail="";  
+var regex=/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
+
+for(var i = 0; i < lines.length; i++){
+  
+
+if(lines[i].includes(lines[i].match(regex)))
+{ 
+
+  
+mail =`${lines[i].match((regex))}`;
+ 
+
+ 
+
+//if(mail.includes(','))
+//{ alert("in")
+  // splitmail =  mail.split(',')
+   // for(var j = 0; j < splitmail.length; j++){
+   //     emails +=`${splitmail[i]}\n`;
+   // }
+//}
+//else{
+  emails +=`${mail}\n`;
+//}
+
+
+
+
+}
+}
+ 
+
+alert("finish")
+ 
+ 
+const link = document.querySelector('a.dynamic');
+link.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(emails));
+link.setAttribute('download', `${name.toLowerCase()}.txt`);
+ 
+
+
+
+
+
+ 
+};
+reader.readAsText(file);
+};
+
+
+
+
+
+
+
+
+  </script>
+  
+  </body></html>
